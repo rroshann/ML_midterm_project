@@ -1,0 +1,8 @@
+git add . -> to add a new or updated files.
+git add complete/path/to/file -> to add specific file
+
+git commit -m "changes made"
+
+git status
+
+git push origin Deals_Najma
