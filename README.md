@@ -22,11 +22,14 @@ It uses an **XGBoost model** trained on marketing and sales features and is full
 ### Clone the repository
 
 git clone https://github.com/rroshann/ML_midterm_project.git
+
 cd ML_midterm_project/Streamlit
 
 ### Build the Docker image (Ensure docker is running in the background)
 
+```
 docker build -t streamlit-deal-app .
+```
 
 ### Run the app
 
