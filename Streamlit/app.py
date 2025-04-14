@@ -66,12 +66,12 @@ if choice == "Predict Deal":
 
 # ---------- Feature 2: Dataset Filtering ----------
 elif choice == "Filter Dataset":
-    st.title("🔍 Filter the Dataset by Column Value")
-    st.write("✅ Feature 2 is working!")
+    st.title("Filter the Dataset by Column Value")
+    st.write("")
 
     try:
         df = pd.read_csv("binary_df.csv")
-        st.success("✅ CSV loaded!")
+        st.success("CSV loaded!")
 
         filter_column = st.selectbox("Choose a column to filter:", df.columns)
         unique_vals = df[filter_column].dropna().unique()
@@ -82,4 +82,4 @@ elif choice == "Filter Dataset":
         st.dataframe(filtered_df)
 
     except Exception as e:
-        st.error(f"⚠️ Could not load or filter dataset: {e}") 
+        st.error(f"Could not load or filter dataset: {e}") 
