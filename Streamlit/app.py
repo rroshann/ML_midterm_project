@@ -7,9 +7,6 @@ import joblib
 model = joblib.load("xgb_model.pkl")
 scaler = joblib.load("scaler.pkl")
 
-# Load dataset (for Feature 2)
-df = pd.read_csv("binary_df.csv")
-
 # Set up sidebar navigation
 st.sidebar.title("🧭 Navigation")
 choice = st.sidebar.radio("Choose a Feature:", ["Predict Deal", "Filter Dataset"])
@@ -68,18 +65,21 @@ if choice == "Predict Deal":
             st.error("Prediction: This deal will be **LOST**.")
 
 # ---------- Feature 2: Dataset Filtering ----------
-elif choice == "🔍 Filter Dataset":
+elif choice == "Filter Dataset":
     st.title("🔍 Filter the Dataset by Column Value")
+    st.write("✅ Feature 2 is working!")
 
-    # Let user pick a column
-    filter_column = st.selectbox("Choose a column to filter:", df.columns)
+    try:
+        df = pd.read_csv("binary_df.csv")
+        st.success("✅ CSV loaded!")
 
-    # Get unique values for that column
-    unique_vals = df[filter_column].dropna().unique()
-    selected_val = st.selectbox(f"Select a value in '{filter_column}':", unique_vals)
+        filter_column = st.selectbox("Choose a column to filter:", df.columns)
+        unique_vals = df[filter_column].dropna().unique()
+        selected_val = st.selectbox(f"Select a value in '{filter_column}':", unique_vals)
 
-    # Filter and display
-    filtered_df = df[df[filter_column] == selected_val]
-    st.write(f"Showing rows where `{filter_column}` = **{selected_val}**:")
-    st.dataframe(filtered_df)
+        filtered_df = df[df[filter_column] == selected_val]
+        st.write(f"Showing rows where `{filter_column}` = **{selected_val}**:")
+        st.dataframe(filtered_df)
 
+    except Exception as e:
+        st.error(f"⚠️ Could not load or filter dataset: {e}")
