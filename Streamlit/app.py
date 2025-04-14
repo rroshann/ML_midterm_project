@@ -82,4 +82,4 @@ elif choice == "Filter Dataset":
         st.dataframe(filtered_df)
 
     except Exception as e:
-        st.error(f"⚠️ Could not load or filter dataset: {e}")
+        st.error(f"⚠️ Could not load or filter dataset: {e}") 
