@@ -3,9 +3,25 @@ import numpy as np
 import pandas as pd
 import joblib
 
+from pathlib import Path
+import joblib
+
+# Robust base path definition
+try:
+    base_dir = Path(__file__).resolve().parent
+except NameError:
+    base_dir = Path.cwd()
+
+# Correct absolute paths for model and scaler
+model_path = base_dir / "xgb_model.pkl"
+scaler_path = base_dir / "scaler.pkl"
+
 # Load model and scaler
-model = joblib.load("xgb_model.pkl")
-scaler = joblib.load("scaler.pkl")
+model = joblib.load(model_path)
+scaler = joblib.load(scaler_path)
+
+
+
 
 # Set up sidebar
 st.sidebar.title("🧭 Navigation")
@@ -69,7 +85,8 @@ elif choice == "Filter Dataset":
     st.title("Filter the Dataset by Column Value")
 
     try:
-        df = pd.read_csv("binary_df.csv")
+        csv_path = base_dir / "binary_df.csv"
+        df = pd.read_csv(csv_path)
         st.success("CSV loaded!")
 
         filter_column = st.selectbox("Choose a column to filter:", df.columns)
@@ -90,7 +107,8 @@ elif choice == "Sales Insights":
     st.title("Sales Insights Dashboard")
 
     try:
-        df = pd.read_csv("binary_df.csv")
+        csv_path = base_dir / "binary_df.csv"
+        df = pd.read_csv(csv_path)
 
         st.subheader("Overall Deal Summary")
         total_deals = len(df)
@@ -143,7 +161,8 @@ elif choice == "Sales Insights":
         
 # ---------- Feature 4: High-Value Customer Segments ----------
 elif choice == "High-Value Customer Segments":
-    df = pd.read_csv("binary_df.csv")
+    csv_path = base_dir / "binary_df.csv"
+    df = pd.read_csv(csv_path)
     
     st.subheader("High-Value Customer Segments")
 
@@ -162,7 +181,8 @@ elif choice == "High-Value Customer Segments":
 
 # Feature 5
 elif choice == "Cross-Segment Win Rate Comparison":
-    df = pd.read_csv("binary_df.csv")
+    csv_path = base_dir / "binary_df.csv"
+    df = pd.read_csv(csv_path)
     st.subheader("Cross-Segment Win Rate Comparison")
 
     col1, col2 = st.columns(2)
