@@ -15,11 +15,11 @@ Traditional sales playbooks are often static and reactive. This project builds a
 
 ### 🧠 Machine Learning Models
 Trained and compared:
-- **Random Forest** (AUC 0.997)
-- **XGBoost** (AUC 1.000)
+- **Random Forest** 
+- **XGBoost** 
 - **AdaBoost**, **KNN**, **Decision Tree**, **Logistic Regression**
 
-XGBoost was selected as the final model due to perfect performance on the test set and robust generalization.
+XGBoost was selected as the final model due to amazing performance on the test set and robust generalization.
 
 ### 🧮 Feature Engineering
 - Custom fields for revenue buckets, tech stack indicators, deal size categories.
